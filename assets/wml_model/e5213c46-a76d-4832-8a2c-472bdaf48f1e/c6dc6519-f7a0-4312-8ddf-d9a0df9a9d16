@@ -1,0 +1,58 @@
+{
+  "doc_type": "pipeline",
+  "pipelines": [{
+    "id": "8bb65a9a-03ec-4e2a-b1f3-e012a3bf7057",
+    "nodes": [{
+      "id": "automl",
+      "op": "wml-http-score",
+      "outputs": [{
+        "id": "automl"
+      }],
+      "parameters": {
+        "output_logs": true,
+        "input_file_separator": ",",
+        "stage_flag": true,
+        "encoding": "utf-8",
+        "optimization": {
+          "daub_adaptive_subsampling_max_mem_usage": 6.0E+9,
+          "daub_include_only_estimators": ["Ensembler"],
+          "holdout_param": 0.05,
+          "learning_type": "timeseries",
+          "lookback_window": 5.0,
+          "max_num_daub_ensembles": 1.0,
+          "num_backtest": 4.0,
+          "prediction_horizon": 2.0,
+          "run_cognito_flag": true,
+          "target_columns": ["value"],
+          "timestamp_column": "timestamp"
+        },
+        "drop_duplicates": true,
+        "output_model": {
+          "location": "/projects/825dfcae-e16f-48e0-9d26-94bc4cab16b6/assets/auto_ml/auto_ml.8180060b-d441-45b3-a676-20d1b238a4cf/wml_data/a9e4424e-2b39-45c6-83ce-5cdb9555d568/data/automl/after_final_pipelines_generation/P3/model.gzip",
+          "name": "automl"
+        }
+      },
+      "runtime_ref": "autoai",
+      "type": "execution_node"
+    }],
+    "runtime_ref": "hybrid"
+  }],
+  "primary_pipeline": "8bb65a9a-03ec-4e2a-b1f3-e012a3bf7057",
+  "runtimes": [{
+    "app_data": {
+      "wml_data": {
+        "hardware_spec": {
+          "id": "e7ed1d6c-2e89-42d7-aed5-863b972c1d2b",
+          "name": "S"
+        },
+        "software_spec": {
+          "name": "autoai-ts_3.8-py3.8"
+        }
+      }
+    },
+    "id": "autoai",
+    "name": "auto_ai.ts",
+    "version": "sha256:dbc64238d1e3b2fea852bc7030665302d8972cde444217e72d35c8e44e38421e"
+  }],
+  "version": "2.0"
+}
